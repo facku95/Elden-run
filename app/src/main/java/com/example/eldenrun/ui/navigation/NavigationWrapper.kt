@@ -21,7 +21,7 @@ fun NavigationWrapper(){
         }
         composable("Armas") {
             val viewmodel: ScreenArmasViewModel = hiltViewModel()
-            ArmasScreen(navController, viewModel = viewmodel)
+            ArmasScreen(navController)
         }
         composable("NPC") {
             screenNpc(navController)

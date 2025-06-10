@@ -21,21 +21,24 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 
 import com.example.eldenrun.ui.viewmodels.ScreenArmasViewModel
+import kotlinx.coroutines.flow.StateFlow
 
 @Composable
 fun ArmasScreen(navController: NavController,
-                viewModel: ScreenArmasViewModel
+
                 ) {
+    val viewModel: ScreenArmasViewModel = hiltViewModel()
     val state by viewModel.state.collectAsState()
+
     Column(modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally) {
         WeaponCard(
-            title = "titulo",
-            subtitle = "sub"
+            title = state.count.toString(),
+            subtitle = state.total.toString()
         ) {
 
         }
@@ -61,7 +64,7 @@ fun WeaponCard(
         ) {
             Column(modifier = Modifier.padding(16.dp)) {
                 Text(
-                    text = title,
+                    text = title.toString(),
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold
                 )
