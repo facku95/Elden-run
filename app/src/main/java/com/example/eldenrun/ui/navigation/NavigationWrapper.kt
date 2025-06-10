@@ -1,6 +1,7 @@
 package com.example.eldenrun.ui.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -19,7 +20,8 @@ fun NavigationWrapper(){
             MainScreen(navController, viewModel = MainScreenViewModel())
         }
         composable("Armas") {
-            ArmasScreen(navController, viewModel = ScreenArmasViewModel())
+            val viewmodel: ScreenArmasViewModel = hiltViewModel()
+            ArmasScreen(navController, viewModel = viewmodel)
         }
         composable("NPC") {
             screenNpc(navController)

@@ -3,8 +3,6 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.jetbrainsKotlinSerialization)
     alias(libs.plugins.hilt)
-    //alias(libs.plugins.ksp)
-    //alias(libs.plugins.kapt)
     id("org.jetbrains.kotlin.kapt")
 
 }
@@ -74,7 +72,6 @@ dependencies {
 
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
-    //ksp(libs.hilt.compiler)
     kapt(libs.hilt.compiler)
 
     testImplementation(libs.junit)
