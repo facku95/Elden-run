@@ -21,14 +21,13 @@ class ScreenArmasViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            val totalArmas = repo.getWeapons().total
-            val success = repo.getWeapons().success
-            val paquete = repo.getWeapons().count
+            val result = repo.getWeapons()
 
             _state.value = _state.value.copy(
-                count = paquete,
-                success = success,
-                total = totalArmas
+                count = result.count,
+                success = result.success,
+                total = result.total,
+                data = result.data
             )
 
 
