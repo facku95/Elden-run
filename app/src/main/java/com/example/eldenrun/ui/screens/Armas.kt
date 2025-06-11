@@ -1,13 +1,18 @@
 package com.example.eldenrun.ui.screens
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Arrangement.Vertical
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -44,7 +49,8 @@ fun ArmasScreen(navController: NavController,
             arma -> WeaponCard(
             title = arma.name,
             subtitle = arma.category,
-            imagen = arma.image) { }
+            imagen = arma.image,
+            descripcion = arma.description) { }
 
         }
     }
@@ -55,6 +61,7 @@ fun WeaponCard(
     title: String,
     subtitle: String,
     imagen: String,
+    descripcion: String,
     onClick: () -> Unit
 ){
 
@@ -66,25 +73,33 @@ fun WeaponCard(
                 .padding(16.dp)
                 .clickable { onClick() }
         ) {
-            Column(modifier = Modifier.padding(16.dp)) {
-                Text(
-                    text = title.toString(),
-                    style = MaterialTheme.typography.titleLarge,
-                    fontWeight = FontWeight.Bold
-                )
-                Spacer(modifier = Modifier.height(8.dp))
-                Text(
-                    text = subtitle,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = Color.Gray
-                )
-                AsyncImage(
-                    model = imagen,
-                    contentDescription = "Mi imagen local con Coil",
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier.size(200.dp)
-                )
+            Row (modifier = Modifier.fillMaxWidth()) {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Text(
+                        text = title.toString(),
+                        style = MaterialTheme.typography.titleLarge,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = subtitle,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = Color.Gray
+                    )
+                    AsyncImage(
+                        model = imagen,
+                        contentDescription = "Mi imagen local con Coil",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier.size(200.dp)
+                    )
+                }
+
+                Column {
+                    Text(descripcion)
+                }
+
             }
+
         }
 
 }
